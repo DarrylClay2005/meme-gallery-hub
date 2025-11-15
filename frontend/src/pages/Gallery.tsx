@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import ImageCanvas from '../components/ImageCanvas'
 
 const API = import.meta.env.VITE_API_BASE_URL
 
@@ -44,7 +45,7 @@ export default function Gallery() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {data?.map((m: any) => (
             <Link key={m.id} to={`/memes/${m.id}`} className="block border rounded overflow-hidden">
-              <img src={m.s3Url} alt={m.title} className="w-full aspect-square object-cover" draggable={false} onContextMenu={(e)=>e.preventDefault()} />
+              <ImageCanvas src={m.s3Url} alt={m.title} className="w-full aspect-square" rounded mode="visible" />
               <div className="p-2 text-sm">{m.title}</div>
             </Link>
           ))}

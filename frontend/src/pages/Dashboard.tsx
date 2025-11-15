@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import ImageCanvas from '../components/ImageCanvas'
 
 const API = import.meta.env.VITE_API_BASE_URL
 
@@ -21,7 +22,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {data?.map((m: any) => (
           <div key={m.id} className="border rounded overflow-hidden">
-            <img src={m.s3Url} alt={m.title} className="w-full aspect-square object-cover" draggable={false} onContextMenu={(e)=>e.preventDefault()} />
+            <ImageCanvas src={m.s3Url} alt={m.title} className="w-full aspect-square" rounded mode="subtle" />
             <div className="p-2 text-sm">{m.title}</div>
           </div>
         ))}

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import ImageCanvas from '../components/ImageCanvas'
 
 const API = import.meta.env.VITE_API_BASE_URL
 
@@ -16,7 +17,7 @@ export default function MemeDetail() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <img src={data.s3Url} alt={data.title} className="w-full rounded" draggable={false} onContextMenu={(e)=>e.preventDefault()} />
+      <ImageCanvas src={data.s3Url} alt={data.title} className="w-full" rounded mode="visible" />
       <h1 className="text-2xl mt-2">{data.title}</h1>
       <p className="text-sm text-gray-500">by {data.user?.username}</p>
       <p className="mt-2">{data.description}</p>
