@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  username     String   @unique
+  createdAt    DateTime @default(now())
+  memes        Meme[]
+}
+
+model Meme {
+  id          Int       @id @default(autoincrement())
+  title       String
+  s3Key       String    @unique
+  s3Url       String
+  description String?
+  isPublic    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+  tags        MemeTag[]
+}
+
+model Tag {
+  id    Int       @id @default(autoincrement())
+  name  String    @unique
+  memes MemeTag[]
+}
+
+model MemeTag {
+  meme   Meme @relation(fields: [memeId], references: [id])
+  memeId Int
+  tag    Tag  @relation(fields: [tagId], references: [id])
+  tagId  Int
+  @@id([memeId, tagId])
+}

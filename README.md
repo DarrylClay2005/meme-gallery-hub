@@ -1,6 +1,24 @@
-My Project Description and Purpose
-What problem does my project solve? My project will provide a centralized, searchable, and collaborative platform for anyone that needs it to store, categorize, and quickly retrieve relevant memes and reaction images, solving the common problem of funny images being scattered across multiple chat threads or folders.
+# Meme Gallery Hub
 
-Who is the target user for my app? online communities (e.g., Discord groups), or anyone who needs an organized and shared repository of reaction content. I.e memes
+A full-stack capstone: backend API (Express/Prisma/S3/JWT) and React frontend.
 
-What makes it interesting or unique? The core focus is on image handling and metadata. I want to implement robust features allowing users to tag memes, categorize them, and search not just by title, but also by associated tags and the uploading user. The use of cloud storage (S3) will be a key component.
+Monorepo layout:
+- backend/ — Express API + Prisma + AWS S3
+- meme-library-api-plan/ — planning docs (capstone plan)
+
+Get started (backend):
+1) Copy .env.example to .env and fill values.
+2) Install deps and generate Prisma client.
+3) Run database migrations.
+4) Start dev server.
+
+Commands:
+
+```
+cd backend
+cp .env.example .env
+pnpm i # or npm i / yarn
+pnpm prisma:generate
+pnpm prisma:migrate
+pnpm dev
+```
